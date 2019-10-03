@@ -1,36 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Coding Projects\\GitHub\\OnPay\\OnPayProject\\Project.UI\\Project.UI.csproj": {}
+    "C:\\Users\\mcole\\Source\\Repos\\MCole84\\OnPayExercises\\OnPayProject\\Project.UI\\Project.UI.csproj": {}
   },
   "projects": {
-    "C:\\Coding Projects\\GitHub\\OnPay\\OnPayProject\\Project.UI\\Project.UI.csproj": {
+    "C:\\Users\\mcole\\Source\\Repos\\MCole84\\OnPayExercises\\OnPayProject\\Project.UI\\Project.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Coding Projects\\GitHub\\OnPay\\OnPayProject\\Project.UI\\Project.UI.csproj",
+        "projectUniqueName": "C:\\Users\\mcole\\Source\\Repos\\MCole84\\OnPayExercises\\OnPayProject\\Project.UI\\Project.UI.csproj",
         "projectName": "Project.UI",
-        "projectPath": "C:\\Coding Projects\\GitHub\\OnPay\\OnPayProject\\Project.UI\\Project.UI.csproj",
-        "packagesPath": "C:\\Users\\m_col\\.nuget\\packages\\",
-        "outputPath": "C:\\Coding Projects\\GitHub\\OnPay\\OnPayProject\\Project.UI\\obj\\",
+        "projectPath": "C:\\Users\\mcole\\Source\\Repos\\MCole84\\OnPayExercises\\OnPayProject\\Project.UI\\Project.UI.csproj",
+        "packagesPath": "C:\\Users\\mcole\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mcole\\Source\\Repos\\MCole84\\OnPayExercises\\OnPayProject\\Project.UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\m_col\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mcole\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp2.2"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp2.2": {
             "projectReferences": {}
           }
         },
@@ -41,26 +41,31 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
+        "netcoreapp2.2": {
+          "dependencies": {
             "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.NETCore.App": {
-              "privateAssets": "all"
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
         }
       }
     }
