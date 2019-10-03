@@ -13,16 +13,16 @@ namespace Project.API.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICompanyRepository _repository;
 
-        public CompaniesController(ApplicationDbContext context)
+        public CompaniesController(ICompanyRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
         [HttpGet]
         public ActionResult<IEnumerable<Company>> Get()
         {
-            return _context.Companies;
+            return _repository.GetAll().ToList();
         }
     }
 }

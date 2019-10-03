@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project.API.Data
 {
-    public class ICompanyRepository
+    public interface ICompanyRepository
     {
-        public IEnumerable<Company> GetAll();
+        IEnumerable<Company> GetAll();
 
-        public Company GetById(int CompanyId);
+        Company GetById(int CompanyId);
     }
 }

@@ -17,7 +17,8 @@ namespace Project.Data.Models
         public DateTime CheckDate { get; set; }
 
         [DataType(DataType.Currency)]
-        public decimal CheckAmount { get; set; }
+        [Column(TypeName ="decimal(18,2)")]
+        public double CheckAmount { get; set; }
 
         [ForeignKey("Company")]
         public int CompanyId { get; set; }
@@ -29,6 +30,7 @@ namespace Project.Data.Models
 
         public Vendor Vendor { get; set; }
 
+        [NotMapped]
         public IEnumerable<string> Invoices { get; set; }
     }
 }

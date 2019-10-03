@@ -17,5 +17,9 @@ namespace Project.API.Data
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        protected ApplicationDbContext()
+        {
+        }
     }
 }
