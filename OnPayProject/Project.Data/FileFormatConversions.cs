@@ -17,15 +17,8 @@ namespace Project.Data
         /// <param name="outputFileLocation"></param>
         public static void ConvertCsvToText(string documentLocation, string outputFileLocation)
         {
-            if(!File.Exists(outputFileLocation))
-            {
-                File.Create(outputFileLocation);
-            }
-
             using(StreamReader reader = new StreamReader(documentLocation))
             {
-                using(StreamWriter writer = new StreamWriter(outputFileLocation))
-                {
                     //add new checkNumbers to dictionary each line read. Existing numbers add the invoice information to the appropriate item
                     Dictionary<int, Check> ChecksInFile = new Dictionary<int, Check>();
                     string line = reader.ReadLine();
@@ -36,17 +29,66 @@ namespace Project.Data
                     while(line != null)
                     {
                         string[] parameters = line.Split(',');
-                        if(parameters.Length != 8)
+                        if(parameters.Length == 8)
                         {
                             int checkNumber = int.Parse(parameters[0]);
                             if(ChecksInFile.ContainsKey(checkNumber))
                             {
-                                
+                                ChecksInFile[checkNumber].InvoiceNumbers.Add(parameters[5]);
+                                ChecksInFile[checkNumber].InvoiceDate.Add(DateTime.Parse(parameters[6]));
+                                ChecksInFile[checkNumber].InvoiceAmounts.Add(Decimal.Parse(parameters[7]));
                             }
+                            else
+                            {
+                                ChecksInFile.Add(checkNumber, new Check()
+                                {
+                                    CheckNumber = parameters[0],
+                                    CheckDate = DateTime.Parse(parameters[1]),
+                                    CheckAmount = Decimal.Parse(parameters[2]),
+                                    VendorNumber = int.Parse(parameters[3]),
+                                    VendorAddress = parameters[4],
+                                    InvoiceNumbers = new List<string>() { parameters[5] },
+                                    InvoiceDate = new List<DateTime>() { DateTime.Parse(parameters[6]) },
+                                    InvoiceAmounts= new List<Decimal>() { Decimal.Parse(parameters[7])}
+                                });
+
+                            }
+                        }
+                        else
+                        {
+                            throw new InvalidDataException("The data was not in the proper format");
+                        }
+                    }
+                CreateTextFileFromChecks(outputFileLocation, ChecksInFile);
+                }
+        }
+
+        private static void CreateTextFileFromChecks(string outputFileLocation, IDictionary<int,Check> checks)
+        {
+            if (!File.Exists(outputFileLocation))
+            {
+                File.Create(outputFileLocation);
+            }
+
+            using(StreamWriter writer = new StreamWriter(outputFileLocation))
+            {
+                foreach(Check c in checks.Values)
+                {
+                    writer.WriteLine(c.CheckNumber);
+                    writer.WriteLine(c.CheckDate);
+                    writer.WriteLine(c.CheckAmount);
+                    writer.WriteLine(c.VendorNumber);
+                    writer.WriteLine(c.VendorAddress);
+                    for(int i = 0; i < 95; i++)
+                    {
+                        if(i < c.InvoiceNumbers.Count)
+                        {
+                            writer.WriteLine($"{c.InvoiceNumbers[i],30} {c.InvoiceDate[i].ToString("MM/dd/yyyy")} {c.InvoiceAmounts[i]:C}");
                         }
                     }
                 }
             }
         }
+
     }
 }

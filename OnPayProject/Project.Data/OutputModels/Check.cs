@@ -16,11 +16,11 @@ namespace Project.Data.OutputModels
 
         public string VendorAddress { get; set; }
 
-        public IEnumerable<string> InvoiceNumbers { get; set; }
+        public IList<string> InvoiceNumbers { get; set; }
 
-        public IEnumerable<DateTime> InvoiceDate { get; set; }
+        public IList<DateTime> InvoiceDate { get; set; }
 
-        public IEnumerable<decimal> InvoiceAmounts { get; set; }
+        public IList<decimal> InvoiceAmounts { get; set; }
 
         
     }

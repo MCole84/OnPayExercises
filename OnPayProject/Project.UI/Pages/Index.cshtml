@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Log In";
+}
+
+<div class="log-in">
+
+</div>
+
+
+<script>
+    var login = new Vue({
+        el: 'log-in',
+        data:{
+            loggedIn: @Model.isUserLoggedIn
+            },
+    })
+</script>
