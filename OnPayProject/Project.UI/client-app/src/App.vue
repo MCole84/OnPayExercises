@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>OnPay Exercise SPA</h1>
+    <h1 id="title">OnPay Exercise SPA</h1>
     <tabs
       :tabs="tabs"
       :currentTab="currentTab"
@@ -19,17 +19,28 @@
 
           <label for="password">Password</label>
           <input type="password" placeholder="Enter password" id="password" required />
-          <button v-on:click="this.handleLogin(document.getElementById('userName'),document.getElementById('password').value)">Log in</button>
+          <button
+            v-on:click="handleLogin(document.getElementById('userName').value,document.getElementById('password').value)"
+          >Log in</button>
         </div>
       </div>
       <div v-if="currentTab === 'Login' && this.loggedIn">
         <h1>Welcome</h1>
+        <div class="dashboard"></div>
       </div>
       <div v-if="currentTab === 'Dashboard' && !this.loggedIn ">
         <h1>Please Log in to view your Dashboard</h1>
       </div>
       <div v-if="currentTab === 'Dashboard' && this.loggedIn ">
-        <h1>Please Log in to view your Dashboard</h1>
+        <div class="container">
+          <label>First Name </label>
+          <input type="text" v-model='firstname' readonly />
+          &nbsp;&nbsp;&nbsp;
+          <label>Last Name </label>
+          <input type="text" v-model='lastname' readonly /><br/>
+          <label>Location &nbsp;&nbsp;&nbsp;</label>
+          <input type="text" v-model='location' readonly /><br/>
+        </div>
       </div>
     </div>
   </div>
@@ -54,22 +65,23 @@ export default {
   data: () => ({
     tabs: TABS,
     currentTab: "Login",
-    loggedIn: false
+    loggedIn: true,
+    userName: "",
+    password: "",
+    firstname: "Steven",
+    lastname: "Roberts",
+    location: "Jacksonville, FL"
   }),
   methods: {
     handleClick(newTab) {
       this.currentTab = newTab;
       var content = document.getElementById("content");
     },
-    handleLogin(user, password) {
-      if(user === ''){
-        alert("Please enter your user name");
-        document.getElementById('userName').focus();
-      }
-      if (user === "test" && password === "password123") {
-        this.password = true;
-      }
-      var content = document.getElementById("content");
+    handleLogin: function(userName, password) {
+      var user = document.getElementById("userName");
+      var pass = document.getElementById("password");
+
+      pass.value = "";
     }
   }
 };
@@ -124,5 +136,18 @@ export default {
 .content {
   margin-top: 30px;
   font-size: 20px;
+}
+#title {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-style: italic;
+}
+body {
+  background: lightblue;
+}
+.warning {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
 }
 </style>
