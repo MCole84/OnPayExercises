@@ -1,17 +1,35 @@
 <template>
   <div>
+    <h1>OnPay Exercise SPA</h1>
     <tabs
       :tabs="tabs"
       :currentTab="currentTab"
       :wrapper-class="'default-tabs'"
-      :tabs-class="'default-tabs__item'"
-      :tab-active-class="'default-tabs__active-line'"
+      :tab-class="'default-tabs__item'"
+      :tab-active-class="'default-tabs__item_active'"
       :line-class="'default-tabs__active-line'"
       @onClick="handleClick"
     />
     <div class="content" id="content">
-      <div v-if="currentTab == 'DashBoard'">
-        <h1>Dashboard</h1>
+      <div v-if="currentTab === 'Login' && !this.loggedIn">
+        <h1>Please Log in</h1>
+        <div class="container">
+          <label for="userName">User Name</label>
+          <input type="text" placeholder="Enter User Name" id="userName" required />
+
+          <label for="password">Password</label>
+          <input type="password" placeholder="Enter password" id="password" required />
+          <button v-on:click="this.handleLogin(document.getElementById('userName'),document.getElementById('password').value)">Log in</button>
+        </div>
+      </div>
+      <div v-if="currentTab === 'Login' && this.loggedIn">
+        <h1>Welcome</h1>
+      </div>
+      <div v-if="currentTab === 'Dashboard' && !this.loggedIn ">
+        <h1>Please Log in to view your Dashboard</h1>
+      </div>
+      <div v-if="currentTab === 'Dashboard' && this.loggedIn ">
+        <h1>Please Log in to view your Dashboard</h1>
       </div>
     </div>
   </div>
@@ -42,20 +60,12 @@ export default {
     handleClick(newTab) {
       this.currentTab = newTab;
       var content = document.getElementById("content");
-      if (this.currentTab == "Login") {
-        if (this.loggedIn) {
-          content.innerHTML = "<h1>You are currently Logged in</h1>";
-        } else {
-          content.innerHTML = "<h1>Please log in</h1>";
-        }
-      } else {
-        if (this.loggedIn) {
-        } else {
-          content.innerHTML = "<h1>Please log in to view your dashboard";
-        }
-      }
     },
     handleLogin(user, password) {
+      if(user === ''){
+        alert("Please enter your user name");
+        document.getElementById('userName').focus();
+      }
       if (user === "test" && password === "password123") {
         this.password = true;
       }
